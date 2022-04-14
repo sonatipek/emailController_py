@@ -2,6 +2,9 @@
 #   girilen ifadenin mail olup olmadığını belirtip hata var ise hatalı olduğunu söyleyip tekrar girmesini isteyecek program yazın
 
 #Sonsuz döngü kullanarak doğru değer girilmedikçe girdi almaya devam ediyoruz.
+from queue import Empty
+
+
 donguDevam = True
 
 while donguDevam:
@@ -17,15 +20,20 @@ while donguDevam:
 
     if (kontrol == False):  #kontrol değişkeni false'ise 
 
-        print("Girdiğiniz değer mail değildir. Lütfen mail giriniz!")   #mail olmadığı ile ilgili bilgilendirme metni döndürüyoruz
+        print("Girdiğiniz değer mail değildir. Lütfen mail giriniz! 1")   #mail olmadığı ile ilgili bilgilendirme metni döndürüyoruz
         
     else:
-        mail = mail.split(".")
-        if mail[-1] == "com":
-            print("Girdiğiniz değer maildir.")  #mail false değil ise  mail olduğu ile ilgili bilgilendirme metni döndürüyoruz
-            donguDevam = False
-            break   #sınırsız döngüden çıkıyoruz
-        else:      
-            print("Girdiğiniz değer mail değildir. Lütfen mail giriniz!")
+        temp = mail.split(".")
+
+        if temp[-1] == "com":
+            temp = mail.split("@")
+            temp = temp[-1].split(".com")
+
+            if temp[0] != Empty:
+                print("Girdiğiniz değer maildir.")  #mail false değil ise  mail olduğu ile ilgili bilgilendirme metni döndürüyoruz
+                donguDevam = False
+                break   #sınırsız döngüden çıkıyoruz
+            
         
-#TODO: @işaretlinden sonra subdomain zorunluluğu getir.
+        else:      
+            print("Girdiğiniz değer mail değildir. Lütfen mail giriniz! 2")
