@@ -1,2 +1,4 @@
-# emailController_py
-email controller module at python programming language
+# Email Controller
+
+- E-mail controller module at Python programming language.
+- Module that checks if the entered expression is mail.

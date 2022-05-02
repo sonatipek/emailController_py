@@ -1,39 +1,42 @@
-#   input ifadesi mail girilmesi isteniyor 
-#   girilen ifadenin mail olup olmadığını belirtip hata var ise hatalı olduğunu söyleyip tekrar girmesini isteyecek program yazın
-
-#Sonsuz döngü kullanarak doğru değer girilmedikçe girdi almaya devam ediyoruz.
 from queue import Empty
 
+loopContinue = True
 
-donguDevam = True
+# We continue to receive input unless the correct value is entered using an infinite loop.
+while loopContinue:
+    control = False
+    mail = input("Please enter the email you want to have checked:\t")
 
-while donguDevam:
-    
-    kontrol = False
-    mail = input("Lütfen mail adresinizi girin:\t")
+    #If the value entered by navigating the string contains the '@' sign, we set the control variable to True and exit the loop.
+    for search in mail:
+        if (search == "@"):
+            control = True
+            break
+    if (control == False):
+        print("Your entry not e-mail. Please enter e-mail!(There must be an @ in the email.)")
 
-    for arama in mail:  #String içerisinde gezinerek 
-        if (arama == "@"):  #girilen değer içinde '@' işaretli varsa
-            kontrol = True #kontrol değişkenini True'ya çeviriyoruz
-            break   #Döngüden çıkıyoruz
-
-
-    if (kontrol == False):  #kontrol değişkeni false'ise 
-
-        print("Girdiğiniz değer mail değildir. Lütfen mail giriniz! 1")   #mail olmadığı ile ilgili bilgilendirme metni döndürüyoruz
-        
+    #If value passed '@' check, we check '.' and subdomain
     else:
+        # .com control 
         temp = mail.split(".")
-
         if temp[-1] == "com":
+        
+            #After .com control we check subdomain 
             temp = mail.split("@")
             temp = temp[-1].split(".com")
-
+            
             if temp[0] != Empty:
-                print("Girdiğiniz değer maildir.")  #mail false değil ise  mail olduğu ile ilgili bilgilendirme metni döndürüyoruz
-                donguDevam = False
-                break   #sınırsız döngüden çıkıyoruz
+                print("Your entry is a e-mail.")
+                loopContinue = False
+                break
             
         
         else:      
-            print("Girdiğiniz değer mail değildir. Lütfen mail giriniz! 2")
+            print("Your entry not e-mail. Please enter e-mail!(Email must have '.com' at the end or a subdomain.)")
+
+#TODO: Also allow other domains like .com
+#TODO: Yalnızca harf rakam ve . kullanılabilir.
+
+#* Yapılanlar
+#Yorum satırları eklendi
+#
