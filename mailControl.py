@@ -33,10 +33,3 @@ while loopContinue:
         
         else:      
             print("Your entry not e-mail. Please enter e-mail!(Email must have '.com' at the end or a subdomain.)")
-
-#TODO: Also allow other domains like .com
-#TODO: Yalnızca harf rakam ve . kullanılabilir.
-
-#* Yapılanlar
-#Yorum satırları eklendi
-#
